@@ -1,0 +1,31 @@
+<div class="birthday-root">
+  <canvas #fireworksCanvas class="fireworks" (click)="onClick($event)"></canvas>
+
+  <div class="balloons" aria-hidden="true">
+    <div class="balloon balloon--pink n1"></div>
+    <div class="balloon balloon--purple n2"></div>
+    <div class="balloon balloon--yellow n3"></div>
+    <div class="balloon balloon--green n4"></div>
+    <div class="balloon balloon--pink n5"></div>
+    <div class="balloon balloon--purple n6"></div>
+  </div>
+
+  <div class="banner">
+    <div class="icon">
+      <!-- smaller teacher icon -->
+      <svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true">
+        <g fill="none" stroke="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#7b6bff" />
+          <path d="M6 8v6a6 6 0 0 0 12 0V8" stroke="#fff" stroke-width="1" opacity="0.9" />
+          <circle cx="12" cy="12" r="2.2" fill="#ffd9b6" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="text">
+      <h1 class="name">{{ titleMsg }}</h1>
+      <p class="wish">{{ msg }}</p>
+
+    </div>
+  </div>
+</div>

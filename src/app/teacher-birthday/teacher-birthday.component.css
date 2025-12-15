@@ -1,0 +1,115 @@
+:root{
+  --bg:#05060a;
+  --card:#0f1220cc;
+  --accent-1:#ff5c7a;
+  --accent-2:#7b6bff;
+}
+
+.birthday-root{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(123,107,255,0.09), transparent),
+              radial-gradient(800px 400px at 90% 80%, rgba(255,92,122,0.06), transparent),
+              var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.fireworks{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  display:block;
+}
+
+.banner{
+  position:relative;
+  z-index:2;
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.025));
+  border-radius:16px;
+  padding:28px 36px;
+  box-shadow: 0 8px 30px rgba(3,6,12,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  max-width:920px;
+  width:calc(100% - 48px);
+  align-items:center;
+}
+
+.icon{ width:56px; height:56px; display:flex; align-items:center; justify-content:center; background:transparent; box-shadow:none; }
+.icon svg{ filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25)); border-radius:6px }
+
+.text{ color:#fff; display:flex; flex-direction:column }
+.name{ font-size:4.2rem; margin:0; line-height:1; font-weight:900; letter-spacing:-0.012em; color: #fff }
+
+.wish{ margin:10px 0 0; opacity:0.98; font-weight:800; color: #eef0ff; font-size:1.6rem; }
+.tag{ margin-top:12px; opacity:0.98; font-size:1.3rem; color:#e6e9ff; }
+
+/* make highlighted name solid color if used elsewhere */
+.highlight{ color: var(--accent-2); }
+
+/* subtle breathing glow */
+@keyframes neon {
+  0%{ box-shadow: 0 0 8px rgba(123,107,255,0.08); }
+  50%{ box-shadow: 0 0 24px rgba(255,92,122,0.12); }
+  100%{ box-shadow: 0 0 8px rgba(123,107,255,0.08); }
+}
+.icon{ animation:neon 3.6s ease-in-out infinite; }
+
+/* Balloons container sits between canvas (z:0) and banner (z:2) */
+.balloons{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+.balloon{
+  position:absolute;
+  bottom:-80px;
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  width:56px;
+  height:72px;
+  transform-origin:center bottom;
+  display:block;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  animation:floatUp 6s linear infinite;
+}
+.balloon::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-10px;
+  width:2px;
+  height:18px;
+  background: rgba(255,255,255,0.15);
+}
+.balloon--pink{ background: radial-gradient(circle at 30% 25%, #fff6fa, #ff5c7a); }
+.balloon--purple{ background: radial-gradient(circle at 30% 25%, #f6f4ff, #7b6bff); }
+.balloon--yellow{ background: radial-gradient(circle at 30% 25%, #fffef6, #ffd56b); }
+.balloon--green{ background: radial-gradient(circle at 30% 25%, #f6fff8, #6ef2a3); }
+
+@keyframes floatUp{
+  0%{ transform: translateY(0) rotate(-4deg); opacity:0 }
+  10%{ opacity:1 }
+  50%{ transform: translateY(-55vh) rotate(6deg); }
+  100%{ transform: translateY(-110vh) rotate(-4deg); opacity:0 }
+}
+
+/* position variants */
+.balloon.n1{ left:8%; animation-duration:7.2s; animation-delay:0s }
+.balloon.n2{ left:18%; animation-duration:6.6s; animation-delay:0.8s }
+.balloon.n3{ left:30%; animation-duration:8s; animation-delay:0.4s }
+.balloon.n4{ left:52%; animation-duration:6.4s; animation-delay:1.1s }
+.balloon.n5{ left:70%; animation-duration:7.6s; animation-delay:0.2s }
+.balloon.n6{ left:82%; animation-duration:9s; animation-delay:0.6s }
+
+@media (max-width:700px){
+  .banner{ flex-direction:row; gap:12px; padding:18px 20px; }
+  .name{ font-size:2.6rem }
+  .icon{ width:80px; height:80px }
+  .wish{ font-size:1.12rem }
+  .tag{ font-size:1rem }
+  .balloon{ width:44px; height:56px }
+}
